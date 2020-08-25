@@ -13,7 +13,8 @@ player_mode = input("Would you like to play singleplayer or multiplayer mode?")
 print("You have selected {} mode".format(player_mode))
 
 if player_mode == "singleplayer":
-    while games < 5:
+    rounds = int(input("How many rounds would you like to play?"))
+    while games < rounds:
 
         def chosen_pokemon():
             chosen_url = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(my_pokemon_name)
@@ -42,6 +43,7 @@ if player_mode == "singleplayer":
         opponent_pokemon = random_pokemon()
 
         if games == 0:
+            print("\nRound {}:".format(games + 1))
             pokemon_hand = []
             cards = 0
             while cards < 5 :
@@ -54,9 +56,10 @@ if player_mode == "singleplayer":
                     pokemon_hand.append(pokemon['name'])
                     cards+=1
 
-            print("CHOOSE YOUR FIGHTER. You have been given:")
+            print("\nCHOOSE YOUR FIGHTER. You have been given:")
             print(*pokemon_hand, sep="\n")
         else:
+            print("\nRound {}:".format(games + 1))
             pokemon_hand.remove(my_pokemon_name)
             cards = 4
             while cards < 5 :
@@ -69,7 +72,7 @@ if player_mode == "singleplayer":
                     pokemon_hand.append(pokemon['name'])
                     cards+=1
 
-            print("CHOOSE YOUR FIGHTER. Your new hand is:")
+            print("\nCHOOSE YOUR FIGHTER. Your new hand is:")
             print(*pokemon_hand, sep="\n")
 
             
@@ -101,21 +104,22 @@ if player_mode == "singleplayer":
 
         if my_stat > opponent_stat:
             my_score+=1
-            print("You Win this round! The opponents {} is {} but your's is {}.".format(stat_choice,opponent_stat,my_stat))
+            print("\nYou Win this round! The opponents {} is {} but your's is {}.".format(stat_choice,opponent_stat,my_stat))
         elif my_stat < opponent_stat:
             computer_score+=1
-            print("You Lose this round! The opponents {} is {} but your's is {}.".format(stat_choice,opponent_stat,my_stat))
+            print("\nYou Lose this round! The opponents {} is {} but your's is {}.".format(stat_choice,opponent_stat,my_stat))
         else:
-            print("It's a draw! Both you and the opponent have a {} of {}.".format(stat_choice,my_stat))
+            print("\nIt's a draw! Both you and the opponent have a {} of {}.".format(stat_choice,my_stat))
 
-        print("The overall scores are \n You: {} Opponent: {}".format(my_score,computer_score))
+        print("\nThe overall scores are \nYou: {} Opponent: {}".format(my_score,computer_score))
         games+=1
+        print("="* 165)
 
 
     if my_score > computer_score:
-        print("Congratulations you won!!! In the end you scored {} and your opponent scored {}".format(my_score,computer_score))
+        print("\n\nCongratulations you won!!! In the end you scored {} and your opponent scored {}".format(my_score,computer_score))
     elif my_score < computer_score:
-        print("Sorry, you lost!!! In the end you scored {} and your opponent scored {}. Better luck next time!".format(my_score,computer_score))
+        print("\n\nSorry, you lost!!! In the end you scored {} and your opponent scored {}. Better luck next time!".format(my_score,computer_score))
 elif player_mode == "multiplayer":
     p1_score = 0
     p2_score = 0
@@ -123,7 +127,9 @@ elif player_mode == "multiplayer":
     p1_name = input("Player 1, what is your name?")
     p2_name = input("Player 2, what is your name?")
 
-    while games < 5:
+    rounds = int(input("Hi {} and {}! How many rounds would you like to play?".format(p1_name,p2_name)))
+
+    while games < rounds:
 
         def p1_pokemon():
             chosen_url = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(p1_pokemon_name)
@@ -150,7 +156,7 @@ elif player_mode == "multiplayer":
             }
 
         if games == 0:
-            print("\n Round 1:")
+            print("\nRound {}:".format(games + 1))
             pokemon_hand1 = []
             cards1 = 0
             
@@ -164,7 +170,7 @@ elif player_mode == "multiplayer":
                     pokemon_hand1.append(pokemon1['name'])
                     cards1+=1
 
-            print("{} CHOOSE YOUR FIGHTER. You have been given:".format(p1_name.upper()))
+            print("\n{} CHOOSE YOUR FIGHTER. You have been given:".format(p1_name.upper()))
             print(*pokemon_hand1, sep="\n")
 
             while 1:
@@ -189,7 +195,7 @@ elif player_mode == "multiplayer":
                     pokemon_hand2.append(pokemon2['name'])
                     cards2+=1
 
-            print("{} CHOOSE YOUR FIGHTER. You have been given:".format(p2_name.upper()))
+            print("\n{} CHOOSE YOUR FIGHTER. You have been given:".format(p2_name.upper()))
             print(*pokemon_hand2, sep="\n")
 
             while 1:
@@ -205,6 +211,8 @@ elif player_mode == "multiplayer":
                 else:
                     print("Sorry, that pokemon is not an option, please choose another!")
         else:
+            print("\nRound {}:".format(games + 1))
+
             pokemon_hand1.remove(p1_pokemon_name)
             pokemon_hand2.remove(p2_pokemon_name)
             cards1 = 4
@@ -229,7 +237,7 @@ elif player_mode == "multiplayer":
                     pokemon_hand2.append(pokemon['name'])
                     cards2+=1
 
-            print("{} CHOOSE YOUR FIGHTER. Your new hand is:".format(p1_name))
+            print("\n{} CHOOSE YOUR FIGHTER. Your new hand is:".format(p1_name))
             print(*pokemon_hand1, sep="\n")
 
             while 1:
@@ -242,7 +250,7 @@ elif player_mode == "multiplayer":
                 else:
                     print("Sorry, that pokemon is not an option, please choose another!")
 
-            print("{} CHOOSE YOUR FIGHTER. Your new hand is:".format(p2_name))
+            print("\n{} CHOOSE YOUR FIGHTER. Your new hand is:".format(p2_name))
             print(*pokemon_hand2, sep="\n")
 
             while 1:
@@ -268,31 +276,35 @@ elif player_mode == "multiplayer":
 
         if p1_stat > p2_stat:
             p1_score+=1
-            print("{} wins this round! {}'s {} is {} and {}'s is {}.".format(p1_name,p1_name,ran_stat_choice,p1_stat,p2_name,p2_stat))
+            print("\n{} wins this round! {}'s {} is {} and {}'s is {}.".format(p1_name,p1_name,ran_stat_choice,p1_stat,p2_name,p2_stat))
         elif p1_stat < p2_stat:
             p2_score+=1
-            print("{} wins this round! {}'s {} is {} and {}'s is {}.".format(p2_name,p2_name,ran_stat_choice,p2_stat,p1_name,p1_stat))
+            print("\n{} wins this round! {}'s {} is {} and {}'s is {}.".format(p2_name,p2_name,ran_stat_choice,p2_stat,p1_name,p1_stat))
         else:
-            print("It's a draw! Both {} and the {} have a {} of {}.".format(p1_name, p2_name,ran_stat_choice,p1_stat))
+            print("\nIt's a draw! Both {} and the {} have a {} of {}.".format(p1_name, p2_name,ran_stat_choice,p1_stat))
 
-        print("The scores are now: \n{}: {} \n{}: {}".format(p1_name,p1_score,p2_name,p2_score))
+        print("\nThe scores are now:\n{}: {} \n{}: {}".format(p1_name,p1_score,p2_name,p2_score))
 
-        advance = input("Would you like to continue to the next round? (y/n")
-        if advance == 'y':
-            games+=1
-            print('next round loading...')
-            print("\n")
-        else:
-            if p1_score > p2_score:
-                print("Congratulations {} you won!!! In the end you scored {} and {} scored {}. \n Better luck next time {}!".format(p1_name,p1_score,p2_name,p2_score, p2_name))
-                break
-            elif my_score < computer_score:
-                print("Congratulations {} you won!!! In the end you scored {} and {} scored {}. \n Better luck next time {}!".format(p2_name,p2_score,p1_name,p1_score, p1_name))
-                break
+        if games+1 < rounds:
+            advance = input("Would you like to continue to the next round? (y/n")
+            if advance == 'y':
+                games+=1
+                print('\nnext round loading...')
+                print("\n")
+                print("="* 165)
             else:
-                print("It's a draw!!! In the end you both scored {}.".format(p1_score))
-                break
+                if p1_score > p2_score:
+                    print("\n\nCongratulations {} you won!!! In the end you scored {} and {} scored {}. \nBetter luck next time {}!".format(p1_name,p1_score,p2_name,p2_score, p2_name))
+                    break
+                elif my_score < computer_score:
+                    print("\n\nCongratulations {} you won!!! In the end you scored {} and {} scored {}. \nBetter luck next time {}!".format(p2_name,p2_score,p1_name,p1_score, p1_name))
+                    break
+                else:
+                    print("\n\nIt's a draw!!! In the end you both scored {}.".format(p1_score))
+                    break
+        else:
+            break
 else:
-    "Sorry that's not an option, please refresh and try again!"       
+    print("Sorry that's not an option, please refresh and try again!")
 
-print('You have finished the game. Thank you for playing Top Trumps Pokemon Edition!')
+print('\nYou have finished the game. Thank you for playing Top Trumps Pokemon Edition!')
