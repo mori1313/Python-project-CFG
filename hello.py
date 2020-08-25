@@ -116,7 +116,6 @@ if player_mode == "singleplayer":
         print("Congratulations you won!!! In the end you scored {} and your opponent scored {}".format(my_score,computer_score))
     elif my_score < computer_score:
         print("Sorry, you lost!!! In the end you scored {} and your opponent scored {}. Better luck next time!".format(my_score,computer_score))
-
 elif player_mode == "multiplayer":
     p1_score = 0
     p2_score = 0
